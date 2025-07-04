@@ -236,7 +236,7 @@ Your task is to generate a single, self-contained HTML file. This file must:
 -   Visually match the style of the provided screenshots.
 -   Use the layout and sectioning of the provided HTML structure as a guide.
 -   Be populated exclusively with the user's data from the provided JSON object. DO NOT use any text content from the reference site's HTML.
--   If you feel there is a need to generate a image for a person, go ahead and do it as well, make sure to use avatar images (gender neutral) instead of real photos.
+-   If a user image is needed, use a gender-neutral illustrated avatar (not realistic or photo-based). Prefer stylized, cartoon-style avatars from sources like example : DiceBear or Avataaars, which preserve anonymity and inclusivity.
 -   Intelligently map the JSON data to the appropriate sections. For example:
     -   `name` and `headline` from the JSON go into the hero/header section.
     -   The `experience` array from the JSON should be used to create a list of jobs in the "Experience" or "Work" section of the layout.
