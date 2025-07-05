@@ -126,3 +126,50 @@
   font-size: 0.875rem;
   color: var(--secondary-text-color);
 }
+
+.footer {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-top: 6rem; /* Space above the footer */
+  padding: 2rem 0;
+  /*border-top: 1px solid var(--border-color); */
+  display: flex;
+  flex-direction: column; /* Stack items on small screens */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* On larger screens, display side-by-side */
+@media (min-width: 768px) {
+  .footer {
+    flex-direction: row;
+  }
+}
+
+.footerText {
+  font-size: 0.875rem;
+  color: var(--secondary-text-color);
+  text-align: center;
+}
+
+.footerLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Space between social icons */
+}
+
+.footerIconLink {
+  color: var(--secondary-text-color);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.footerIconLink:hover {
+  color: var(--primary-text-color); /* Brighten icon on hover */
+  transform: translateY(-2px);
+}
+
+.footerIconLink svg {
+  width: 24px; /* Set size for SVG icons */
+  height: 24px;
+}

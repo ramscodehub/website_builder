@@ -8,8 +8,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Website Cloner", // Updated title
-  description: "Generate HTML clones of websites with AI.",
+  title: "Portfolio Builder", // Updated title
+  description: "Generate Portfolio's with reference websites.",
 };
 
 export default function RootLayout({
