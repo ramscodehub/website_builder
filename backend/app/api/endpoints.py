@@ -139,7 +139,20 @@ async def build_portfolio_endpoint(build_config: PortfolioBuildConfig, request: 
         scraped_context = await scraper_service.scrape_website_context(build_config.reference_url)
         if not scraped_context.simplified_html or "failed" in scraped_context.simplified_html.lower():
             raise HTTPException(status_code=422, detail="Scraping the reference URL failed. Cannot proceed.")
-
+        if "Application error: a client-side exception has occurred" in scraped_context.simplified_html:
+            print(f"ERROR: Detected a client-side crash on the reference site: {build_config.reference_url}")
+            # Stop the process immediately and return a helpful error to the user.
+            raise HTTPException(
+                status_code=422, # Unprocessable Content
+                detail="The provided reference website encountered a client-side error during processing. This can happen with some modern web frameworks. Please try a different reference URL.")
+        # NEW Check 2: Empty root div (SPA didn't load)
+        # We check if the simplified_html is very short and basically just the empty root div.
+        if scraped_context.simplified_html and len(scraped_context.simplified_html) < 100 and '<div id="root"></div>' in scraped_context.simplified_html:
+            print(f"ERROR: Scraped an empty shell for SPA site: {build_config.reference_url}")
+            raise HTTPException(
+                status_code=422,
+                detail="The reference site seems to be a dynamic application that did not load content in time. Please try a different URL."
+            )
         # Step 2: Parse the user's resume text into structured JSON
         print("Step 2: Parsing resume text with LLM...")
         resume_json = await llm_service.parse_resume_to_json(build_config.resume_text)
