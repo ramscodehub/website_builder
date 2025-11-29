@@ -32,6 +32,26 @@
 .errorMessage { margin-top: 1rem; padding: 0.75rem; border-radius: var(--border-radius); text-align: center; background-color: rgba(229, 62, 62, 0.2); color: #e53e3e; font-weight: 500; }
 
 /* ... (All styles up to the gallery section remain the same) ... */
+/* --- NEW: Progress Bar Styles --- */
+.progressBarContainer {
+  width: 100%;
+  height: 8px;
+  background-color: var(--border-color); /* The track of the bar */
+  border-radius: 9999px;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem; /* Space below the progress bar */
+  overflow: hidden; /* Ensures the inner bar has rounded corners */
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: var(--accent-color); /* The filled part of the bar */
+  border-radius: 9999px;
+  /* This transition makes the width changes smooth */
+  transition: width 0.8s cubic-bezier(0.25, 0.1, 0.25, 1); 
+  width: 0%; /* Starts at 0% width */
+}
+
 
 /* --- Gallery Section --- */
 .gallerySection {
